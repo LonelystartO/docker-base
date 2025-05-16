@@ -64,11 +64,11 @@ jobs:
           file: ./${{ matrix.base }}/Dockerfile
           platforms: linux/arm/v7
           target: base
-          cache-from: type=registry,ref=ghcr.io/LonelystartO/docker-base:cache-${{ matrix.base }}
-          cache-to: ${{ github.event_name == 'release' && format('type=registry,ref=ghcr.io/LonelystartO/docker-base:cache-{0},mode=max', matrix.base) || '' }}
+          cache-from: type=registry,ref=ghcr.io/lonelystarto/docker-base:cache-${{ matrix.base }}
+          cache-to: ${{ github.event_name == 'release' && format('type=registry,ref=ghcr.io/lonelystarto/docker-base:cache-{0},mode=max', matrix.base) || '' }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: |
-            ghcr.io/LonelystartO/docker-base:${{ matrix.base }}-${{ steps.get_tag.outputs.version }}
+            ghcr.io/lonelystarto/docker-base:${{ matrix.base }}-${{ steps.get_tag.outputs.version }}
 
       - name: Build ha-addon image
         uses: docker/build-push-action@v6.15.0
@@ -80,8 +80,8 @@ jobs:
           file: ./${{ matrix.base }}/Dockerfile
           platforms: linux/arm/v7
           target: ha-addon
-          cache-from: type=registry,ref=ghcr.io/LonelystartO/docker-base:cache-${{ matrix.base }}
-          cache-to: ${{ github.event_name == 'release' && format('type=registry,ref=ghcr.io/LonelystartO/docker-base:cache-{0},mode=max', matrix.base) || '' }}
+          cache-from: type=registry,ref=ghcr.io/lonelystarto/docker-base:cache-${{ matrix.base }}
+          cache-to: ${{ github.event_name == 'release' && format('type=registry,ref=ghcr.io/lonelystarto/docker-base:cache-{0},mode=max', matrix.base) || '' }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: |
-            ghcr.io/LonelystartO/docker-base:${{ matrix.base }}-ha-addon-${{ steps.get_tag.outputs.version }}
+            ghcr.io/lonelystarto/docker-base:${{ matrix.base }}-ha-addon-${{ steps.get_tag.outputs.version }}
