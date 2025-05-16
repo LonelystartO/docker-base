@@ -51,7 +51,10 @@ ARG TARGETVARIANT
 
 RUN \
     set -x \
-    && if [ "${TARGETARCH}${TARGETVARIANT}" = "amd64" ]; then \
+    && if [ "${TARGETARCH}${TARGETVARIANT}" = "armv7" ]; then \
+            export S6_ARCH="arm"; \
+            export TEMPIO_ARCH="armv7"; \
+        elif [ "${TARGETARCH}${TARGETVARIANT}" = "amd64" ]; then \
             export S6_ARCH="x86_64"; \
             export TEMPIO_ARCH="amd64"; \
         elif [ "${TARGETARCH}${TARGETVARIANT}" = "arm64" ]; then \
